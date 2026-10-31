@@ -2,11 +2,23 @@ import java.util.Arrays;
 
 public class HamiltonianPath {
 
-    private int numVertices;
-    private int[] path;
-    private int[][] graph;
+    private final int numVertices;
+    private final int[] path;
+    private final int[][] graph;
 
     public HamiltonianPath(int[][] graph) {
+        if (graph == null) {
+            throw new IllegalArgumentException("Graph adjacency matrix cannot be null.");
+        }
+        if (graph.length == 0) {
+            throw new IllegalArgumentException("Graph must contain at least one vertex.");
+        }
+        // Ensure the matrix is square
+        for (int[] row : graph) {
+            if (row == null || row.length != graph.length) {
+                throw new IllegalArgumentException("Graph adjacency matrix must be square and non-null rows.");
+            }
+        }
         this.graph = graph;
         this.numVertices = graph.length;
         this.path = new int[numVertices];
@@ -35,7 +47,7 @@ public class HamiltonianPath {
 
         // Try candidate vertices for the current position in the path
         for (int v = 0; v < numVertices; v++) {
-            if (isSafe(v)) {
+            if (isSafe(v, pos)) {
                 path[pos] = v;
 
                 // Recur to build the rest of the path
