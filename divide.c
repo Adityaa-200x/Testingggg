@@ -1,7 +1,7 @@
 #include <stdio.h>
 int main(){
-    int a = 5;
-    int b = 0;
-    float c = a/b;
+    int p = 5;
+    int q = 0;
+    float c = p/q;
     printf("%f",c);
 }
