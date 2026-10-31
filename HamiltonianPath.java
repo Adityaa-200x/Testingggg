@@ -35,7 +35,7 @@ public class HamiltonianPath {
 
         // Try candidate vertices for the current position in the path
         for (int v = 0; v < numVertices; v++) {
-            if (isSafe(v)) {
+            if (isSafe(v,pos)) {
                 path[pos] = v;
 
                 // Recur to build the rest of the path
